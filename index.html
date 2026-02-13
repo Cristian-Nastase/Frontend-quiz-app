@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js" defer></script>
+    
+    <title>Frontend Mentor | Frontend quiz app</title>
+  </head>
+  <body>
+
+    <header class="header">
+
+      <div class="header__quiz__section hidden" aria-hidden="true">
+      
+        <img 
+            class="quiz__section__logo" 
+            src="assets/images/icon-accessibility.svg" 
+            alt="section-logo"
+          />
+      
+        <h2 class="quiz__section__name">
+          Accessibility
+        </h2>
+  
+      </div>
+
+      <div class="header__light__mode">
+
+        <picture class="light__mode__sun">
+          <source 
+            srcset="assets/images/icon-sun-dark.svg"
+            media="prefers-color-scheme: dark" />
+          <img src="assets/images/icon-sun-light.svg" alt="light" />
+        </picture>
+
+        <input id="light-mode" type="checkbox" name="light__mode__switch" aria-label="Switch the Light Mode">
+
+        <picture class="light__mode__sun">
+          <source 
+            srcset="assets/images/icon-moon-dark.svg"
+            media="prefers-color-scheme: dark" />
+          <img src="assets/images/icon-moon-light.svg" alt="light" />
+        </picture>
+    
+      </div>
+
+    </header>
+
+  <!-- Quiz menu start -->
+
+  <section class="menu">
+    
+    <div class="menu__welcome">
+  
+      <div class="menu__welcome"></div>
+      <h1 class="menu__welcome__header">
+        Welcome to the <b>Frontend Quiz!</b>
+      </h1>
+  
+      <p class="menu__info">
+        Pick a subject to get started.
+      </p>
+  
+    </div>
+
+    <div class="menu__buttons">
+      
+    </div>
+  </section>
+
+  <!-- Quiz menu end -->
+  
+  <!-- HTML
+  CSS
+  JavaScript
+  Accessibility -->
+  
+  <!-- Quiz question start -->
+   
+  <section class="quiz hidden" aria-hidden="true">
+
+    <div class="quiz__left">
+
+      <p class="quiz__left__counter">
+        Question 
+        
+        <span id="current-question">
+          6
+        </span> 
+
+        of 
+        
+        <span id="total-questions">
+          10
+        </span>
+      
+      </p>
+
+      <h1 class="quiz__left__question">
+        Which of these color contrast ratios defines the minimum 
+        WCAG 2.1 Level AA requirement for normal text?
+      </h1>
+
+      <svg></svg>
+
+    </div>
+
+    <div class="quiz__right__side">
+
+      <!-- Insert buttons generated with JS -->
+
+      <button
+          id="submit-answer"
+          class="quiz__right__submit" 
+          type="submit">
+        Submit answer
+      </button>
+    </div>
+
+  </section>
+
+  <!-- Quiz question end -->
+
+  <!-- Quiz completed start -->
+
+  <section class="quiz__completed hidden" aria-hidden="true">
+    
+    <div class="quiz__completed__title">
+    
+      <h2 class="quiz__completed__header">
+        Quiz completed
+        <b>You scored...</b>
+      </h2>  
+    
+    </div>
+
+    <div class="quiz__completed__right">
+
+      <div class="quiz__completed__results">
+
+        <h1 id="final-score" class="quiz__results__score">
+          8
+        </h1>
+
+        <p class="quiz__results__info">
+          out of 
+          <span id="final-total-questions">10</span>
+        </p>
+
+      </div>
+
+      <button
+          id="play-again" 
+          class="quiz__completed__restart">
+          Play Again
+      </button>
+
+    </div>
+
+
+  </section>
+
+  <!-- Quiz completed end -->
+
+<template id="button-template" class="template__button">
+  <slot class="template__icon" name="image-or-number">
+    NEED IMAGE
+  </slot>
+  <p class="button__title"><slot name="title">Text</slot></p>
+</template>
+
+</body>
+</html>
