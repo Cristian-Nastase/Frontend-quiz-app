@@ -13,6 +13,8 @@
   </head>
   <body>
 
+    <span class="background__blur" aria-hidden="true"></span>
+
     <header class="header">
 
       <div class="header__quiz__section hidden" aria-hidden="true">
@@ -31,20 +33,25 @@
 
       <div class="header__light__mode">
 
-        <picture class="light__mode__sun">
+        <picture class="light__mode__icon">
           <source 
-            srcset="assets/images/icon-sun-dark.svg"
+            srcset="assets/images/icon-sun-light.svg"
             media="prefers-color-scheme: dark" />
-          <img src="assets/images/icon-sun-light.svg" alt="light" />
+          <img src="assets/images/icon-sun-dark.svg" alt="light" />
         </picture>
 
-        <input id="light-mode" type="checkbox" name="light__mode__switch" aria-label="Switch the Light Mode">
+        <input id="light-mode" class="light__mode__input" type="checkbox" name="light-mode" aria-label="Switch the Light Mode">
+        <label for="light-mode">
+          <span class="light__mode__switch" aria-hidden="true">
+            <span class="switch__button"></span>
+          </span>
+        </label>
 
-        <picture class="light__mode__sun">
+        <picture class="light__mode__icon">
           <source 
-            srcset="assets/images/icon-moon-dark.svg"
+            srcset="assets/images/icon-moon-light.svg"
             media="prefers-color-scheme: dark" />
-          <img src="assets/images/icon-moon-light.svg" alt="light" />
+          <img src="assets/images/icon-moon-dark.svg" alt="light" />
         </picture>
     
       </div>
@@ -52,37 +59,32 @@
     </header>
 
   <!-- Quiz menu start -->
-
-  <section class="menu">
+  <main>
+  <section id="menu" class="menu">
     
     <div class="menu__welcome">
-  
-      <div class="menu__welcome"></div>
-      <h1 class="menu__welcome__header">
-        Welcome to the <b>Frontend Quiz!</b>
+
+      <h1 class="menu__welcome__header text-preset-2-light">
+        Welcome to the 
+        <b class="text-preset-2-medium">Frontend Quiz!</b>
       </h1>
   
-      <p class="menu__info">
+      <p class="menu__info text-preset-6">
         Pick a subject to get started.
       </p>
   
     </div>
 
-    <div class="menu__buttons">
+    <div id="menu-buttons-container" class="menu__buttons">
       
     </div>
   </section>
 
   <!-- Quiz menu end -->
-  
-  <!-- HTML
-  CSS
-  JavaScript
-  Accessibility -->
-  
+
   <!-- Quiz question start -->
    
-  <section class="quiz hidden" aria-hidden="true">
+  <section id="quiz" class="quiz hidden" aria-hidden="true" inert="">
 
     <div class="quiz__left">
 
@@ -101,22 +103,22 @@
       
       </p>
 
-      <h1 class="quiz__left__question">
+      <h1 id="quiz-question" class="quiz__left__question">
         Which of these color contrast ratios defines the minimum 
         WCAG 2.1 Level AA requirement for normal text?
       </h1>
-
-      <svg></svg>
-
     </div>
 
     <div class="quiz__right__side">
 
       <!-- Insert buttons generated with JS -->
+      <div id="quiz-buttons-container" class="quiz__buttons__container">
+        
+      </div>
 
       <button
           id="submit-answer"
-          class="quiz__right__submit" 
+          class="quiz__right__submit button" 
           type="submit">
         Submit answer
       </button>
@@ -128,7 +130,7 @@
 
   <!-- Quiz completed start -->
 
-  <section class="quiz__completed hidden" aria-hidden="true">
+  <section id="result" class="quiz__completed hidden" aria-hidden="true">
     
     <div class="quiz__completed__title">
     
@@ -164,15 +166,8 @@
 
 
   </section>
-
+  </main>
   <!-- Quiz completed end -->
-
-<template id="button-template" class="template__button">
-  <slot class="template__icon" name="image-or-number">
-    NEED IMAGE
-  </slot>
-  <p class="button__title"><slot name="title">Text</slot></p>
-</template>
 
 </body>
 </html>
