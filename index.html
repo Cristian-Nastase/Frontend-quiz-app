@@ -12,20 +12,18 @@
     <title>Frontend Mentor | Frontend quiz app</title>
   </head>
   <body>
-
-    <span class="background__blur" aria-hidden="true"></span>
-
     <header class="header">
 
-      <div class="header__quiz__section hidden" aria-hidden="true">
+      <div id="header-quiz-section" class="header__quiz__section hidden" aria-hidden="true">
       
-        <img 
+        <img
+            id="quiz-section-image" 
             class="quiz__section__logo" 
             src="assets/images/icon-accessibility.svg" 
             alt="section-logo"
           />
       
-        <h2 class="quiz__section__name">
+        <h2 id="quiz-section-name" class="quiz__section__name text-preset-4">
           Accessibility
         </h2>
   
@@ -58,13 +56,13 @@
 
     </header>
 
-  <!-- Quiz menu start -->
+
   <main>
   <section id="menu" class="menu">
     
-    <div class="menu__welcome">
+    <div class="menu__welcome left-anim">
 
-      <h1 class="menu__welcome__header text-preset-2-light">
+      <h1 class="menu__welcome__header  text-preset-2-light">
         Welcome to the 
         <b class="text-preset-2-medium">Frontend Quiz!</b>
       </h1>
@@ -79,16 +77,12 @@
       
     </div>
   </section>
-
-  <!-- Quiz menu end -->
-
-  <!-- Quiz question start -->
    
-  <section id="quiz" class="quiz hidden" aria-hidden="true" inert="">
+  <section id="quiz" class="quiz hidden right-anim" aria-hidden="true" inert="">
 
     <div class="quiz__left">
 
-      <p class="quiz__left__counter">
+      <p class="quiz__left__counter text-preset-6">
         Question 
         
         <span id="current-question">
@@ -102,72 +96,79 @@
         </span>
       
       </p>
-
-      <h1 id="quiz-question" class="quiz__left__question">
+      
+      <h1 id="quiz-question" class="quiz__left__question text-preset-3">
         Which of these color contrast ratios defines the minimum 
         WCAG 2.1 Level AA requirement for normal text?
       </h1>
+
+      <div class="quiz__left__loading">
+        <div id="progress" class="quiz__left__progress"></div>
+      </div>
     </div>
 
     <div class="quiz__right__side">
 
-      <!-- Insert buttons generated with JS -->
       <div id="quiz-buttons-container" class="quiz__buttons__container">
         
       </div>
 
       <button
           id="submit-answer"
-          class="quiz__right__submit button" 
+          class="quiz__right__submit button text-preset-4" 
           type="submit">
         Submit answer
       </button>
+
+      <p id="select-error" class="quiz__error hidden">
+        <img src="assets/images/icon-incorrect.svg" alt="select-icon" />
+        Please select an answer
+      </p>
     </div>
 
   </section>
 
-  <!-- Quiz question end -->
-
-  <!-- Quiz completed start -->
-
-  <section id="result" class="quiz__completed hidden" aria-hidden="true">
+  <section id="result" class="result hidden right-anim" aria-hidden="true" inert="">
     
     <div class="quiz__completed__title">
     
-      <h2 class="quiz__completed__header">
+      <h2 class="quiz__completed__header text-preset-2-light">
         Quiz completed
-        <b>You scored...</b>
+        <b class="text-preset-2-medium">You scored...</b>
       </h2>  
     
     </div>
 
-    <div class="quiz__completed__right">
+    <div class="result__right">
 
-      <div class="quiz__completed__results">
+      <div class="result__grade">
 
-        <h1 id="final-score" class="quiz__results__score">
+        <div class="result__section">
+          <img
+            id="result-section-image" 
+            src="assets/images/icon-accessibility.svg" class="result__section__icon" />
+          <h2 id="result-section-title" class="result__section__title text-preset-4">Accessibility</h2>
+        </div>
+
+        <h1 id="final-score" class="result__score text-preset-1">
           8
         </h1>
 
-        <p class="quiz__results__info">
+        <p class="result__info text-preset-4">
           out of 
           <span id="final-total-questions">10</span>
         </p>
 
       </div>
 
-      <button
-          id="play-again" 
-          class="quiz__completed__restart">
+      <button id="play-again" class="result__restart button text-preset-4">
           Play Again
       </button>
 
     </div>
-
-
   </section>
+
   </main>
-  <!-- Quiz completed end -->
 
 </body>
 </html>
