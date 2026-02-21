@@ -5,7 +5,7 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", fun
 {
     // it will only call the function if the option from the browser
     // does not match the one selected in the website
-    if(this.matches != lightMode.checked)
+    if(this.matches !== lightMode.checked)
         {
             switchLightMode();
             lightMode.checked = this.matches;
@@ -132,15 +132,15 @@ function quizLogic(data)
 
         deselectButtons();
         
-        const icon = createIcon("right");
+        const rightIcon = createIcon("right");
         quizButtonsContainer.childNodes[rightAnswer].classList.add("right");
-        quizButtonsContainer.childNodes[rightAnswer].appendChild(icon);
+        quizButtonsContainer.childNodes[rightAnswer].appendChild(rightIcon);
 
         if(rightAnswer !== answerSelected)
             {
                 quizButtonsContainer.childNodes[answerSelected].classList.add("wrong");
-                const icon = createIcon("wrong");
-                quizButtonsContainer.childNodes[answerSelected].appendChild(icon);
+                const wrongIcon = createIcon("wrong");
+                quizButtonsContainer.childNodes[answerSelected].appendChild(wrongIcon);
             }
         else
             {
@@ -202,7 +202,7 @@ function quizLogic(data)
     
     submitAnswerButton.addEventListener("click", handleSubmitAnswerButton);
     
-    function handleSubmitAnswerButton(e)
+    function handleSubmitAnswerButton()
     {
         if(answerSelected < 0)
             {
@@ -324,7 +324,7 @@ function toggleHide(current)
 
 function returnBgColor(title)
 {
-    let bgColor = 
+    const bgColor = 
     {
         html: "var(--orange-50)",
         css: "var(--green-100)",
