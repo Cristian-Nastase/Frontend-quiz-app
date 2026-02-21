@@ -1,4 +1,35 @@
-window.addEventListener("load", getData); 
+const lightMode = document.getElementById("light-mode");
+
+lightMode.addEventListener("change", switchLightMode);
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function()
+{
+    // it will only call the function if the option from the browser
+    // does not match the one selected in the website
+    if(this.matches != lightMode.checked)
+        {
+            switchLightMode();
+            lightMode.checked = this.matches;
+        }
+});
+
+function switchLightMode()
+{
+    document.body.classList.toggle("dark-mode");
+}
+
+function checkLightMode()
+{
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if(prefersDark) document.body.classList.add("dark-mode");
+    
+    lightMode.checked = prefersDark;
+}
+
+window.addEventListener("load", function()
+{
+    checkLightMode();
+    getData()
+}); 
 
 // First parsing the data, if it's okay, it will go further to effectively load the quiz
 
@@ -27,8 +58,12 @@ function loadQuizMenu(data)
 
     menuButtonsContainer.replaceChildren();
 
-    if(menu.hasAttribute("aria-hidden")) toggleHide(menu);
-
+    if(menu.hasAttribute("aria-hidden")) 
+        {
+            toggleHide(menu);
+            const header = document.getElementById("header-quiz-section");
+            toggleHide(header);
+        }
     for(let i = 0; i < data.length; i++)
         {
             const button = createMenuButton(data[i]?.title, data[i]?.icon, i);
@@ -85,11 +120,27 @@ function quizLogic(data)
 
     function checkAnswer()
     {
-        quizButtonsContainer.childNodes[rightAnswer].classList.add("right");
+        function createIcon(type)
+        {
+            const icon = document.createElement("img");
+            icon.classList.add(`right__icon`);
+            icon.src = type === "right" ? "assets/images/icon-correct.svg" : "assets/images/icon-error.svg";
+            icon.alt = `${type} icon`;
+            
+            return icon;
+        }
+
+        deselectButtons();
         
+        const icon = createIcon("right");
+        quizButtonsContainer.childNodes[rightAnswer].classList.add("right");
+        quizButtonsContainer.childNodes[rightAnswer].appendChild(icon);
+
         if(rightAnswer !== answerSelected)
             {
                 quizButtonsContainer.childNodes[answerSelected].classList.add("wrong");
+                const icon = createIcon("wrong");
+                quizButtonsContainer.childNodes[answerSelected].appendChild(icon);
             }
         else
             {
@@ -113,17 +164,17 @@ function quizLogic(data)
                     if(!canContinue)
                         {
                             answerSelected = parseInt(this.dataset.index);
+                            deselectButtons();
                             this.classList.add("selected");
-                            deselectOtherButtons();
                         }
                 });
             }
     }
     
-    function deselectOtherButtons()
+    function deselectButtons()
     {
         quizButtonsContainer.childNodes.forEach(element => {
-            if (element.dataset.index != answerSelected) element.classList.remove("selected");
+            element.classList.remove("selected");
         });
     }
 
@@ -267,7 +318,7 @@ function createMenuButton(title, iconPath, index)
 function toggleHide(current)
 {
     current.toggleAttribute("inert");
-    current.setAttribute("aria-hidden", !current.getAttribute("aria-hidden"));
+    current.setAttribute("aria-hidden", (!current.getAttribute("aria-hidden")).toString());
     current.classList.toggle("hidden");
 }
 
@@ -275,10 +326,10 @@ function returnBgColor(title)
 {
     let bgColor = 
     {
-        html: "var(--orange-400)",
-        css: "var(--green-500)",
-        javascript: "var(--blue-500)",
-        accessibility: "var(--purple-600)" 
+        html: "var(--orange-50)",
+        css: "var(--green-100)",
+        javascript: "var(--blue-50)",
+        accessibility: "var(--purple-100)" 
     };
 
     return bgColor[title.toLowerCase()];
